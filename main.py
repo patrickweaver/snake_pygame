@@ -20,6 +20,9 @@ clock = pygame.time.Clock()
  
 snake_block = 50
 snake_speed = 5
+
+#font_style = pygame.font.SysFont("courier", 25)
+#score_font = pygame.font.SysFont("courier", 35)
  
 def our_snake(snake_block, snake_list):
     for x in snake_list:
@@ -27,13 +30,15 @@ def our_snake(snake_block, snake_list):
  
  
 def message(msg, color):
-    mesg = font_style.render(msg, True, color)
-    dis.blit(mesg, [dis_width / 6, dis_height / 3])
+    #mesg = font_style.render(msg, True, color)
+    #dis.blit(mesg, [dis_width / 6, dis_height / 3])
+    print(msg)
  
  
 def gameLoop():
     game_over = False
     game_close = False
+    game_over_message = False
  
     x1 = dis_width / 2
     y1 = dis_height / 2
@@ -51,7 +56,9 @@ def gameLoop():
  
         while game_close == True:
             dis.fill(blue)
-            message("You Lost! Press C-Play Again or Q-Quit", red)
+            if not game_over_message:
+                message("You Lost! Press C-Play Again or Q-Quit", red)
+                game_over_message = True
  
             pygame.display.update()
  
